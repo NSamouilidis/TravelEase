@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .success-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+        
+        .success-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .success-message {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        
+        .success-details {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 30px;
+            text-align: left;
+        }
+        
+        .success-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .success-detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .success-detail-label {
+            font-weight: 500;
+        }
+        
+        .success-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="success-section">
+        <div class="container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1 class="success-title">Booking Confirmed!</h1>
+            <p class="success-message">Your travel booking has been successfully processed. We've sent a confirmation email with all the details.</p>
+            
+            <div class="success-details">
+                <h3>Booking Details</h3>
+                <div class="success-detail-item">
+                    <span class="success-detail-label">Booking ID:</span>
+                    <span id="bookingId">Loading...</span>
+                </div>
+                <div class="success-detail-item">
+                    <span class="success-detail-label">Destination:</span>
+                    <span id="bookingDestination">Loading...</span>
+                </div>
+                <div class="success-detail-item">
+                    <span class="success-detail-label">Dates:</span>
+                    <span id="bookingDates">Loading...</span>
+                </div>
+                <div class="success-detail-item">
+                    <span class="success-detail-label">Travelers:</span>
+                    <span id="bookingTravelers">Loading...</span>
+                </div>
+                <div class="success-detail-item">
+                    <span class="success-detail-label">Transportation:</span>
+                    <span id="bookingTransport">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="success-buttons">
+                <a href="/profile.html" class="btn btn-primary">View My Bookings</a>
+                <a href="/places.html" class="btn btn-outline">Explore More Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/booking_success.js"></script>
+</body>
+</html>

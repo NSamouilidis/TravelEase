@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html" class="active">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="place-detail-section">
+        <div class="container">
+            <div class="place-gallery" id="placeGallery">
+                <!-- Gallery will be loaded dynamically -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+            
+            <div class="place-content">
+                <div class="place-info">
+                    <h1 class="place-title" id="placeName">Loading...</h1>
+                    <div class="place-location" id="placeLocation">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Loading...</span>
+                    </div>
+                    
+                    <div class="place-description" id="placeDescription">
+                        <p>Loading destination details...</p>
+                    </div>
+                    
+                    <div class="place-features">
+                        <div class="place-feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Free WiFi</span>
+                        </div>
+                        <div class="place-feature">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurants</span>
+                        </div>
+                        <div class="place-feature">
+                            <i class="fas fa-swimming-pool"></i>
+                            <span>Swimming Pool</span>
+                        </div>
+                        <div class="place-feature">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Room Service</span>
+                        </div>
+                        <div class="place-feature">
+                            <i class="fas fa-spa"></i>
+                            <span>Spa</span>
+                        </div>
+                        <div class="place-feature">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Fitness Center</span>
+                        </div>
+                    </div>
+                    
+                    <div class="place-reviews">
+                        <h3>Reviews</h3>
+                        <div class="review-stats">
+                            <div class="overall-rating">
+                                <span class="rating-number">4.5</span>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">128 reviews</span>
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="avatar">
+                                            <img src="https://source.unsplash.com/100x100/?portrait" alt="Reviewer">
+                                        </div>
+                                        <div>
+                                            <h4>John Smith</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">2 days ago</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>Amazing destination! The experience exceeded all my expectations. The local cuisine was delicious and the people were incredibly friendly.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="avatar">
+                                            <img src="https://source.unsplash.com/100x100/?woman" alt="Reviewer">
+                                        </div>
+                                        <div>
+                                            <h4>Emily Johnson</h4>
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="review-date">1 week ago</div>
+                                </div>
+                                <div class="review-content">
+                                    <p>I had a wonderful time. The scenery was breathtaking and there were plenty of activities to enjoy. Would definitely recommend visiting.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-booking">
+                    <h3>Book Your Trip</h3>
+                    <div class="booking-price" id="placePrice">$0.00</div>
+                    <div class="price-per">per person</div>
+                    
+                    <form id="bookingForm">
+                        <input type="hidden" id="destinationName" name="destination">
+                        
+                        <div class="booking-form-group">
+                            <label for="transport">Transportation</label>
+                            <select id="transport" name="transport" required>
+                                <option value="">Select transportation</option>
+                                <option value="Flight">Flight</option>
+                                <option value="Train">Train</option>
+                                <option value="Bus">Bus</option>
+                                <option value="Car Rental">Car Rental</option>
+                            </select>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label>Travel Dates</label>
+                            <div class="date-inputs">
+                                <div>
+                                    <input type="date" id="startDate" name="startDate" required>
+                                </div>
+                                <div>
+                                    <input type="date" id="endDate" name="endDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label for="numPeople">Number of People</label>
+                            <select id="numPeople" name="numPeople" required>
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6+ People</option>
+                            </select>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label for="notes">Special Requests</label>
+                            <textarea id="notes" name="notes" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="booking-total">
+                            <span>Total:</span>
+                            <span id="totalPrice">$0.00</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block" id="bookNowBtn">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2023.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/place_detail.js"></script>
+</body>
+</html>
