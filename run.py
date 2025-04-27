@@ -1,16 +1,10 @@
 #!/usr/bin/env python
-"""
-Script to run the Django development server for TravelEase.
-Connects to your existing MySQL database.
-"""
-
 import os
 import subprocess
 import sys
 import mysql.connector
 
 def check_database():
-    """Check if the database exists and is accessible."""
     db_config = {
         'host': 'localhost',
         'user': 'root',
@@ -23,7 +17,7 @@ def check_database():
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
         
-        # Check required tables
+      
         required_tables = ['users', 'destinations', 'bookings']
         missing_tables = []
         
@@ -67,7 +61,6 @@ def check_requirements():
     return True
 
 def run_server():
-    """Run the Django development server."""
     print("\n=== TravelEase Server Startup ===\n")
     
     if not check_requirements():
@@ -81,11 +74,10 @@ def run_server():
 
     print("\nStarting TravelEase Django server...")
     
-    # Run the Django development server
+   
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'travelease.settings')
     
     try:
-        # Use Django's management commands directly
         from django.core.management import execute_from_command_line
         execute_from_command_line(['manage.py', 'runserver', '0.0.0.0:3000'])
     except KeyboardInterrupt:

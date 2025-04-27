@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary Details - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .itinerary-detail-section {
+            padding: 80px 0;
+        }
+        
+        .itinerary-banner {
+            margin-bottom: 40px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            width: 100%;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .itinerary-banner img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .itinerary-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .itinerary-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .itinerary-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .itinerary-info {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+        
+        .itinerary-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .itinerary-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .itinerary-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-item i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .itinerary-description {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .destinations-list {
+            margin-bottom: 30px;
+        }
+        
+        .destinations-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .destination-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .destination-day {
+            min-width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: 600;
+        }
+        
+        .destination-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .destination-details p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .itinerary-booking {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .booking-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .price-per {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .booking-form-group {
+            margin-bottom: 15px;
+        }
+        
+        .booking-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .booking-form-group select,
+        .booking-form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+        
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .booking-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-weight: 700;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            width: 100%;
+            background-color: #f8f9fa;
+        }
+
+        .loading-spinner i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="itinerary-detail-section">
+        <div class="container">
+            <div class="itinerary-banner" id="itineraryBanner">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+            
+            <div class="itinerary-content">
+                <div class="itinerary-info">
+                    <h1 class="itinerary-title" id="itineraryTitle">Loading...</h1>
+                    <div class="itinerary-meta">
+                        <span><i class="fas fa-user"></i> <span id="itineraryAuthor">Loading...</span></span>
+                        <span><i class="fas fa-calendar"></i> <span id="itineraryDate">Loading...</span></span>
+                    </div>
+                    
+                    <div class="itinerary-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <div class="stat-value" id="itineraryDays">0</div>
+                                <div class="stat-label">Days</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <div class="stat-value" id="itineraryDestCount">0</div>
+                                <div class="stat-label">Destinations</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <div class="stat-value">4.8</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-description" id="itineraryDescription">
+                        <p>Loading itinerary details...</p>
+                    </div>
+                    
+                    <div class="destinations-list">
+                        <h3 class="destinations-title">Itinerary Destinations</h3>
+                        <div id="destinationsList">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlights">
+                        <h3 class="destinations-title">Trip Highlights</h3>
+                        <ul id="highlightsList">
+                            <li>Loading highlights...</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="itinerary-booking">
+                    <h3>Book This Itinerary</h3>
+                    <div class="booking-price" id="itineraryPrice">$0.00</div>
+                    <div class="price-per">per person</div>
+                    
+                    <form id="bookingForm">
+                        <input type="hidden" id="itineraryId" name="itineraryId">
+                        <input type="hidden" id="itineraryName" name="itineraryName">
+                        
+                        <div class="booking-form-group">
+                            <label for="transport">Transportation</label>
+                            <select id="transport" name="transport" required>
+                                <option value="">Select transportation</option>
+                                <option value="Flight">Flight</option>
+                                <option value="Bus">Bus</option>
+                            </select>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label>Travel Dates</label>
+                            <div class="date-inputs">
+                                <div>
+                                    <input type="date" id="startDate" name="startDate" required>
+                                </div>
+                                <div>
+                                    <input type="date" id="endDate" name="endDate" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label for="numPeople">Number of People</label>
+                            <select id="numPeople" name="numPeople" required>
+                                <option value="1">1 Person</option>
+                                <option value="2" selected>2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6+ People</option>
+                            </select>
+                        </div>
+                        
+                        <div class="booking-form-group">
+                            <label for="notes">Special Requests</label>
+                            <textarea id="notes" name="notes" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="booking-total">
+                            <span>Total:</span>
+                            <span id="totalPrice">$0.00</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block" id="bookNowBtn">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/itinerary_detail.js"></script>
+    <script src="/static/js/profile-images.js"></script>
+</body>
+</html>

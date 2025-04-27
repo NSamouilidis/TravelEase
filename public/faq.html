@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about TravelEase services</p>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I create an account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Creating an account is easy! Click on the "Sign Up" button in the top right corner of any page. Fill in your username, email address, and create a password. Accept the Terms of Service and Privacy Policy, then click "Create Account". You'll be ready to explore and book trips in just a few seconds.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I book a trip?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To book a trip, first browse our destinations or itineraries and select one that interests you. On the destination detail page, you'll find a booking form where you can select your preferred transportation, travel dates, and number of travelers. Fill out the form, add any special requests, and click "Book Now". You'll receive a confirmation email with all the details of your booking.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards including Visa, MasterCard, American Express, and Discover. We also support PayPal for secure online payments. All payments are processed through a secure payment gateway to ensure your financial information remains safe.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I cancel or modify my booking?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel or modify your booking by going to your profile page and selecting "My Bookings". Find the booking you wish to change and use the "Cancel" or "Modify" options. Please note that cancellation policies vary by destination, and some bookings may incur fees if changed close to the travel date. Full details are provided at the time of booking.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are there any hidden fees?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, we pride ourselves on transparency. The price you see is the final price you'll pay, with all taxes and fees included. We clearly display the breakdown of costs before you confirm your booking so you know exactly what you're paying for. There are no surprise charges or hidden fees.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer travel insurance?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer optional travel insurance for all bookings. During the checkout process, you'll have the option to add comprehensive travel insurance that covers trip cancellation, medical emergencies, lost luggage, and more. We recommend adding insurance to protect your travel investment, especially for international trips.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What's included in the itinerary packages?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our itinerary packages typically include accommodation, transportation between destinations, guided tours at key attractions, and some meals as specified in the itinerary description. Each package is different, so please check the detailed inclusions listed on the itinerary page. Additional services like airport transfers or optional activities may be available at an extra cost.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I contact customer support?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our customer support team is available 24/7. You can reach us by email at support@travelease.com, by phone at +44 7483 192547, or through the Contact form on our website. For urgent matters while traveling, we provide an emergency contact number in your booking confirmation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Didn't find your answer?</h2>
+            <p>Our customer service team is ready to help you with any questions you may have.</p>
+            <a href="/contact.html" class="btn btn-primary">Contact Us</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/profile-images.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                    
+                    const icon = question.querySelector('i');
+                    if (item.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

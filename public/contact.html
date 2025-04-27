@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We're here to help with any questions about your travels</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Call Us</h3>
+                        <p>Our friendly team is here to help.</p>
+                        <a href="tel:+18008001234" class="contact-detail">+44 7483 192547</a>
+                        <p class="contact-hours">Mon-Fri: 8am - 8pm EST</p>
+                        <p class="contact-hours">Sat-Sun: 9am - 6pm EST</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>Send us an email and we'll respond within 24 hours.</p>
+                        <a href="mailto:support@travelease.com" class="contact-detail">support@travelease.com</a>
+                        <p class="contact-detail">For bookings: bookings@travelease.com</p>
+                        <p class="contact-detail">For partnerships: partners@travelease.com</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>Come say hello at our headquarters.</p>
+                        <p class="contact-detail">
+                            University of Derby<br>
+                            Kedleston Rd<br>
+                            Derby DE22 1GB <br>
+                            United Kingdom
+                        </p>
+                        <p class="contact-hours">Mon-Fri: 9am - 5pm EST</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our customer service team in real-time.</p>
+                        <p class="contact-detail">Available 24/7 for urgent support</p>
+                        <button class="btn btn-outline btn-sm start-chat-btn">Start Chat</button>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <p>Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-message success" id="contactSuccess" style="display: none;">
+                            Your message has been sent successfully! We'll respond to you shortly.
+                        </div>
+                        <div class="form-message error" id="contactError" style="display: none;"></div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="Booking Inquiry">Booking Inquiry</option>
+                                <option value="Cancellation Request">Cancellation Request</option>
+                                <option value="Change Request">Change Request</option>
+                                <option value="Feedback">Feedback</option>
+                                <option value="Technical Support">Technical Support</option>
+                                <option value="Partnership">Partnership</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="privacy" required>
+                                <span>I agree to the <a href="/privacy-policy.html">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section contact-map">
+        <div class="container">
+            <h2>Find Us</h2>
+            <div id="contact-map" class="contact-map-container">
+                <iframe src="https://maps.google.com/maps?q=University+of+Derby+Kedleston+Rd%2C+Derby+DE22+1GB%2C+United+Kingdom&output=embed" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="faq-cta">
+        <div class="container">
+            <h2>Looking for quick answers?</h2>
+            <p>Check our frequently asked questions for immediate solutions to common inquiries.</p>
+            <a href="/faq.html" class="btn btn-outline">View FAQ</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/profile-images.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('contactSuccess');
+            const errorMessage = document.getElementById('contactError');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    successMessage.style.display = 'none';
+                    errorMessage.style.display = 'none';
+                    
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+                    
+                    setTimeout(() => {
+                        successMessage.style.display = 'block';
+                        
+                        contactForm.reset();
+                        
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Send Message';
+                        
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 1500);
+                });
+            }
+            
+            const chatButton = document.querySelector('.start-chat-btn');
+            if (chatButton) {
+                chatButton.addEventListener('click', function() {
+                    alert('Live chat feature coming soon! Please contact us via email or phone in the meantime.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Itineraries - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .itinerary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .itinerary-card {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .itinerary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .itinerary-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .itinerary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .itinerary-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .itinerary-content {
+            padding: 20px;
+        }
+        
+        .itinerary-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .itinerary-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .itinerary-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .itinerary-description {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .destinations-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .destination-tag {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.9rem;
+        }
+        
+        .itinerary-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .itinerary-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+        
+        .featured-itineraries {
+            margin-bottom: 60px;
+        }
+        
+        .itinerary-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="featured-itineraries">
+        <div class="container">
+            <h2 class="section-title">Featured Itineraries</h2>
+            <p class="section-description">Explore our carefully crafted travel plans</p>
+            
+            <div class="itinerary-grid" id="featuredItineraries">
+            </div>
+        </div>
+    </section>
+
+    <section class="all-itineraries">
+        <div class="container">
+            <h2 class="section-title">Browse All Itineraries</h2>
+            
+            <div class="itinerary-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+                <button class="filter-btn" data-filter="cultural">Cultural</button>
+                <button class="filter-btn" data-filter="beach">Beach</button>
+                <button class="filter-btn" data-filter="city">City Break</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+            </div>
+            
+            <div class="itinerary-grid" id="allItineraries">
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/itineraries.js"></script>
+    <script src="/static/js/profile-images.js"></script>
+</body>
+</html>

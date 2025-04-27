@@ -1,14 +1,8 @@
-#!/usr/bin/env python
-"""
-Script to verify database connection for TravelEase.
-This script checks your existing database structure and tables.
-"""
-
 import mysql.connector
 import sys
 
 def check_database_structure():
-    """Check the existing database structure."""
+   
     
     # Database connection settings
     db_config = {
@@ -19,18 +13,18 @@ def check_database_structure():
         'use_pure': True
     }
     
-    # Connect to MySQL
+    
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor(dictionary=True)
         print("✅ Successfully connected to the MySQL database")
         
-        # Check if tables exist
+        
         expected_tables = ['users', 'destinations', 'bookings']
         cursor.execute("SHOW TABLES")
         table_results = cursor.fetchall()
         
-        # Get the correct key name which includes the database name
+        
         if table_results:
             table_key = list(table_results[0].keys())[0]  # Get the first key of the result dictionary
             existing_tables = [table[table_key] for table in table_results]
@@ -45,32 +39,32 @@ def check_database_structure():
         else:
             print("✅ All required tables exist in the database")
             
-            # Check table structures
+            
             expected_columns = {
                 'users': ['id', 'username', 'email', 'password', 'created_at'],
                 'destinations': ['id', 'name', 'image_url', 'price', 'description', 'created_at'],
                 'bookings': ['id', 'user_id', 'destination', 'transport', 'start_date', 'end_date', 'num_people', 'notes', 'created_at']
             }
             
-            # Check each table's columns
+            
             for table in expected_tables:
                 cursor.execute(f"DESCRIBE {table}")
                 columns = cursor.fetchall()
                 column_names = [col['Field'] for col in columns]
                 print(f"Table '{table}' has columns: {', '.join(column_names)}")
                 
-                # Check for missing columns
+                
                 missing_columns = [col for col in expected_columns[table] if col not in column_names]
                 if missing_columns:
                     print(f"⚠️ Warning: Table '{table}' is missing columns: {', '.join(missing_columns)}")
             
-            # Count records in each table
+            
             for table in existing_tables:
                 cursor.execute(f"SELECT COUNT(*) as count FROM {table}")
                 count = cursor.fetchone()['count']
                 print(f"Table '{table}' has {count} records")
         
-        # Close connection
+        
         cursor.close()
         conn.close()
         print("\n✅ Database verification complete.")

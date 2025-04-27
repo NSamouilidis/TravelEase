@@ -1,23 +1,14 @@
-"""
-Django settings for travelease project.
-Using direct database connection with MySQL.
-"""
-
 from pathlib import Path
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3a6%+tx@5!z2r63*3r@&#_!c4#lhvp!&sdo!d6-rju*3j_uyq8'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,14 +34,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'travelease.urls'
 
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'public'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Template settings
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,7 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'travelease.wsgi.application'
 
-# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
@@ -87,7 +75,6 @@ DATABASES = {
     }
 }
 
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -103,13 +90,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'public/static'),
@@ -117,7 +102,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Template settings to find HTML files
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

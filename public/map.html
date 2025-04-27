@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Map - TravelEase</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .map-container {
+            height: 600px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            z-index: 1;
+        }
+        
+        .map-sidebar {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .map-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .map-legend {
+            background-color: white;
+            padding: 15px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .marker-tooltip {
+            font-size: 1rem;
+            padding: 5px 10px;
+        }
+        
+        .marker-popup img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .marker-popup h3 {
+            margin: 0 0 5px 0;
+        }
+        
+        .marker-popup-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .cluster-marker {
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">
+                    <i class="fas fa-plane-departure"></i>
+                    <span>TravelEase</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/places.html">Destinations</a></li>
+                    <li><a href="/map.html">Map</a></li>
+                    <li><a href="/itineraries.html">Itineraries</a></li>
+                    <li class="nav-auth" id="loggedOutNav">
+                        <a href="/login.html" class="btn btn-light">Login</a>
+                        <a href="/signup.html" class="btn btn-primary">Sign Up</a>
+                    </li>
+                    <li class="nav-auth" id="loggedInNav" style="display: none;">
+                        <a href="/profile.html" id="usernameDisplay"></a>
+                        <button class="btn btn-light" id="logoutBtn">Logout</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="map-section">
+        <div class="container">
+            <div class="map-header">
+                <h1>Explore Destinations Map</h1>
+                <p>Discover amazing places around the world on our interactive map</p>
+            </div>
+            
+            <div class="map-sidebar">
+                <h3>Filter Destinations</h3>
+                <div class="map-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="budget">Budget (< $800)</button>
+                    <button class="filter-btn" data-filter="mid-range">Mid-range ($800-$1100)</button>
+                    <button class="filter-btn" data-filter="luxury">Luxury (> $1100)</button>
+                </div>
+                <p class="filter-info">Currently showing <span id="destinationCount">all</span> destinations</p>
+            </div>
+            
+            <div id="destinations-map" class="map-container">
+            </div>
+            
+            <div class="map-legend">
+                <h3>Price Range</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #2ecc71;"></div>
+                    <span>Budget (Less than $800)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #f39c12;"></div>
+                    <span>Mid-range ($800 - $1100)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #e74c3c;"></div>
+                    <span>Luxury (More than $1100)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="logo">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>TravelEase</span>
+                    </a>
+                    <p>Making travel planning simple and enjoyable since 2025.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/places.html">Destinations</a></li>
+                        <li><a href="/map.html">Map</a></li>
+                        <li><a href="/itineraries.html">Itineraries</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="/contact.html">Contact Us</a></li>
+                        <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest deals and travel inspiration.</p>
+                    <form>
+                        <input type="email" placeholder="Your email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/map.js"></script>
+    <script src="/static/js/profile-images.js"></script>
+</body>
+</html>
